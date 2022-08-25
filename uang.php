@@ -28,13 +28,17 @@ class Artimatika {
     }
 
     public function hasil() {
+        $this->tambah(20);
         return $this->jumlah;
     }
 
-
+    // function __toString()
+    // {
+    //     return (string) $this->jumlah;
+    // }
 
 }
 
 $Artimatika= new Artimatika();
 $Artimatika->tambah(20)->kurang(5)->bagi(5)->kali(2);
-echo 'Hasil Penjumlahan : ' .$Artimatika->hasil() ;
+echo 'Hasil Penjumlahan : ' .(new Artimatika());
