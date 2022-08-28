@@ -4,7 +4,7 @@ class Arit {
     public $tambah2;
     public $hasil;
     
-
+    //dijalnkakn ketika ada sebuat objek yang di intens ketika perintah new
     function __construct($hasil1, $hasil2) {
         $this->tambah1 = $hasil1;
         $this->tambah2 = $hasil2;

@@ -53,7 +53,7 @@ foreach ($data_barang as $item) {
 
 $new_data_barang = (array_map(function ($item) {
     if ($item ["harga"]> 2000) {
-        return $item ["harga"];
+        return $item;
     }
 }, $data_barang)) ;
 (array_filter($data_barang, function ($item) {
