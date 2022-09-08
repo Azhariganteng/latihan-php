@@ -12,20 +12,23 @@ include "koneksi.php";
 </head>
 <body>
     <h2>DATA PRODUK CUY</h2>
-    <table border="1" cellpadding="1">
-    <tr>
+    <table align="left" border="1">
+    <tr bgcolor="yellow">
             <th>ID</th>
             <th>NAMA</th>
             <th>HARGA_PRODUK</th>
         </tr>
     <?php
         $no=0;
+        $total=0;
+        $tot_bayar=0;
         $query =mysqli_query($koneksi, "SELECT * FROM produk order by id");
         echo "<pre>";
         print_r(mysqli_fetch_array($query, MYSQLI_ASSOC));
         echo "</pre>";
         while($result =mysqli_fetch_array($query)){
-            $no++
+            $no++;
+            $tot_bayar += $result['harga_produk'];
             ?>
             <tr>
                 <td><?php echo $no?></td>                  
@@ -36,6 +39,10 @@ include "koneksi.php";
         <?php
         }
         ?>
+         <tr>
+            <td colspan="1" align="left">TOTAL :</td>
+            <td colspan="2" align="center"><?php echo number_format($tot_bayar,0,',','.');?></td>     
+    </tr>
     </table>
     
     <center>
@@ -46,8 +53,8 @@ include "koneksi.php";
         JOIN profil as p ON p.user_id = u.id
     ");
     ?>
-    <table border="1">
-        <tr>
+    <table align="right" border="1">
+        <tr bgcolor="#00ff80">
             <td>NAMA</td>
             <td>EMAIL</td>
             <td>TANGGAL_LAHIR</td>
@@ -67,5 +74,52 @@ include "koneksi.php";
             ?>
     </table>
     </center>
+
+    <?php
+    $no=0;
+    $total=0;
+    $query= mysqli_query($koneksi,
+    "SELECT o.identifier, p.nama, p.harga_produk, o.qty, o.payment_method, o.total
+    FROM produk as p
+    INNER JOIN orders_product as op ON p.id = op.product_id
+    INNER JOIN orders as o ON o.id = op.order_id
+");
+    ?>
+    <table align="center" border="1">
+        <tr bgcolor="ff8000">
+            <td>ID</td>
+            <td>IDENTIFIER</td>
+            <td>NAMA_PRODUK</td>
+            <td>HARGA_PRODUK</td>
+            <td>QTY</td>
+            <td>PEMBAYARAN</td>
+        </tr>
+        <?php
+        $total=0;
+        while($result=mysqli_fetch_array($query)){
+            $no++;
+            $total=$result ['total'];
+            ?>
+            <tr>
+                <td><?php echo $no ?></td>
+                <td><?php echo $result['identifier'];?></td>
+                <td><?php echo $result['nama'];?></td>
+                <td><?php echo $result['harga_produk'];?></td>
+                <td><?php echo $result['qty'];?></td>
+                <td><?php echo $result['payment_method'];?></td>
+            </tr>
+            
+            <?php
+        }
+        ?>
+         <tr>
+            <td colspan="1" align="left">TOTAL :</td>
+            <td colspan="5" align="center"><?php echo number_format($total,0,',','.');?></td>     
+    </tr>
+    <tr>
+            <td colspan="1" align="left">TOTAL PRODUK :</td>
+            <td colspan="5" align="center">8000</td>     
+    </tr>
+    </table>
 </body>
 </html>
