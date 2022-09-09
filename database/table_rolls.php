@@ -30,7 +30,7 @@ include "koneksi.php";
         include "koneksi.php";
         $no=0;
         $query = mysqli_query($koneksi, "SELECT * FROM roles");
-        while($result =mysqli_fetch_array($query)){
+        while($result =mysqli_fetch_array($query)):
             $no++;
             ?>
             <tr>
@@ -44,7 +44,7 @@ include "koneksi.php";
                 <td><a href="hapus-data.php?hapus=<?=$result['id']?>">Hapus</td>
             </tr>
             <?php
-        }
+        endwhile;
         ?>
         </div>
     </table>
