@@ -15,5 +15,5 @@ if($hasil) {
         }
     }
 }else{
-    echo 'DATA GAGAL';
+    echo 'DATA GAGAL DIHAPUS';
 }

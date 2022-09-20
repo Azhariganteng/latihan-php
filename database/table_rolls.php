@@ -1,3 +1,4 @@
+
 <?php
 include "koneksi.php";
 ?>
@@ -24,7 +25,7 @@ include "koneksi.php";
             <td>NO</td>
             <td>ROLES_ID</td>
             <td>NAME_ROLES</td>
-            <td colspan="2" align="center">AKSI</td>
+            <td colspan="3" align="center">AKSI</td>
         </tr>
         <?php
         include "koneksi.php";
@@ -42,6 +43,7 @@ include "koneksi.php";
                 <!-- $_GET ngambil dari url                 -->
                 <!-- php?abc adalah query parameter -->
                 <td><a href="hapus-data.php?hapus=<?=$result['id']?>">Hapus</td>
+                <td><a href="edit-data.php?edit=<?=$result['id']?>">Edit</td>
             </tr>
             <?php
         endwhile;
